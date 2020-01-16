@@ -38,10 +38,23 @@ class eForm
     {
 
         $defaultValues = [
+            'id'   => 'input-' . rand(100000000, 999999999),
+            'name' => 'unnamed' . rand(100000000, 999999999),
+            'type' => 'text',
+        ];
+
+        $defaultValues = array_merge(eForm::getSharedValues(), $defaultValues);
+        $properties    = array_merge($defaultValues, $properties);
+
+        return View::make('eForm::input', $properties)->render();
+
+    }
+
+    public static function getSharedValues()
+    {
+
+        return [
             'label'       => '',
-            'id'          => 'input-' . rand(100000000, 999999999),
-            'name'        => 'unnamed' . rand(100000000, 999999999),
-            'type'        => 'text',
             'placeholder' => null,
             'value'       => '',
             'class'       => '',
@@ -49,9 +62,49 @@ class eForm
             'grid'        => 12,
         ];
 
-        $properties = array_merge($defaultValues, $properties);
+    }
 
-        return View::make('eForm::input', $properties)->render();
+    /**
+     * @param array $properties
+     *
+     * @return string
+     */
+    public static function textarea($properties = [])
+    {
+
+        $defaultValues = [
+            'id'   => 'textarea-' . rand(100000000, 999999999),
+            'name' => 'unnamed' . rand(100000000, 999999999),
+            'rows' => 3,
+        ];
+
+        $defaultValues = array_merge(eForm::getSharedValues(), $defaultValues);
+        $properties    = array_merge($defaultValues, $properties);
+
+        return View::make('eForm::textarea', $properties)->render();
+
+    }
+
+    /**
+     * @param array $properties
+     *
+     * @return string
+     */
+    public static function select($properties = [])
+    {
+
+        $defaultValues = [
+            'id'       => 'input-' . rand(100000000, 999999999),
+            'name'     => 'unnamed' . rand(100000000, 999999999),
+            'datas'    => [],
+            'selected' => null,
+            'noScript' => false,
+        ];
+
+        $defaultValues = array_merge(eForm::getSharedValues(), $defaultValues);
+        $properties    = array_merge($defaultValues, $properties);
+
+        return View::make('eForm::select', $properties)->render();
 
     }
 
