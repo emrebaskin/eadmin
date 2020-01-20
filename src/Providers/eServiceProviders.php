@@ -2,7 +2,7 @@
 
 namespace EmreBaskin\Eadmin\Providers;
 
-use EmreBaskin\Eadmin\Components\eTable;
+use EmreBaskin\Eadmin\Components\eComp;
 use EmreBaskin\Eadmin\FormBuilder\eForm;
 use Illuminate\Support\ServiceProvider;
 
@@ -20,8 +20,12 @@ class eServiceProviders extends ServiceProvider
             return new eForm();
         });
 
-        $this->app->singleton('EmreBaskin\Eadmin\Components\eTable', function ($app) {
-            return new eTable();
+        $this->app->singleton('EmreBaskin\Eadmin\Components\eComp', function ($app) {
+            return new eComp();
+        });
+
+        $this->app->singleton('EmreBaskin\Eadmin\Helpers\eHelper', function ($app) {
+            return new eHelper();
         });
 
         /*
@@ -29,7 +33,8 @@ class eServiceProviders extends ServiceProvider
          */
         $loader = \Illuminate\Foundation\AliasLoader::getInstance();
         $loader->alias('eForm', 'EmreBaskin\Eadmin\FormBuilder\eForm');
-        $loader->alias('eTable', 'EmreBaskin\Eadmin\Components\eTable');
+        $loader->alias('eComp', 'EmreBaskin\Eadmin\Components\eComp');
+        $loader->alias('eHelper', 'EmreBaskin\Eadmin\Helpers\eHelper');
     }
 
     /**
@@ -40,6 +45,6 @@ class eServiceProviders extends ServiceProvider
     public function boot()
     {
         $this->loadViewsFrom(__DIR__ . '/../views/' . env('EADMIN_THEME', 'dashforge') . '/form', 'eForm');
-        $this->loadViewsFrom(__DIR__ . '/../views/' . env('EADMIN_THEME', 'dashforge') . '/table', 'eTable');
+        $this->loadViewsFrom(__DIR__ . '/../views/' . env('EADMIN_THEME', 'dashforge') . '/components', 'eComp');
     }
 }

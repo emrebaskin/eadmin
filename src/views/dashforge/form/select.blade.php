@@ -1,6 +1,6 @@
 <div class="form-group col-md-{{ $grid }}">
     @if($label)<label for="{{ $id }}">{{ $label }}</label>@endif
-    <select id="{{ $id }}" name="{{ $name }}" value="{{ $value }}" class="form-control select2 {{ $class }}"
+    <select id="{{ $id }}" name="{{ $name }}" value="{{ $value }}" class="form-control select2 {{ $class }} @error($name) is-invalid @enderror"
            placeholder="{{ $placeholder ?? $label }}" {{ $disabled ? 'disabled' : '' }}>
 
         <option label="{{ __('Choose one') }}"></option>
@@ -10,18 +10,11 @@
 
     </select>
 
-    @if(isset($errors) && $errors->get($name))
-
-        <small class="form-text text-danger">
-
-            @foreach($errors->get($name) as $message)
-                {{ $message }}
-            @endforeach
-
-        </small>
-
-    @endif
-
+    @error($name)
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+    @enderror
 </div>
 
 @section('customScripts')
