@@ -1,16 +1,10 @@
-#### eForm
 ```
 'providers' => [
   ...
-  EmreBaskin\Eadmin\Providers\eFormServiceProvider::class,
+  EmreBaskin\Eadmin\Providers\eServiceProviders::class,
 ];
 ```
-```
-'aliases' => [
-  ...
-  'eForm' => EmreBaskin\Eadmin\FormBuilder\eForm::class,
-];
-```
+
 
 #### Usage
 
@@ -133,6 +127,32 @@
                     '1001_1004' => 'Computer > Laptop',
                     '1002'      => 'Phone'
                 ]
+        ]) 
+    !!}
+```
+
+**eForm::button()**
+
+ - available & default options:
+```
+    [
+        'id'       => 'button-' . rand(100000000, 999999999),
+        'label'    => __('Button'),
+        'class'    => '',
+        'color'    => 'dark',
+        'disabled' => false,
+    ];
+```
+
+- example: 
+
+```
+    {!! 
+        eForm::button([
+            'id'    => 'sendbutton',
+            'class' => 'form-control', 
+            'color' => 'primary', 
+            'label' => 'Send Form'
         ]) 
     !!}
 ```

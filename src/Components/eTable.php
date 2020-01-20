@@ -5,7 +5,7 @@ namespace EmreBaskin\Eadmin\FormBuilder;
 use Illuminate\Support\Facades\View;
 
 
-class eForm
+class eTable
 {
 
     /**
@@ -13,7 +13,7 @@ class eForm
      *
      * @return string
      */
-    public static function open($properties = [])
+    public static function responsive($properties = [])
     {
 
         $defaultValues = [
