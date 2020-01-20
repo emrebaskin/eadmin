@@ -156,3 +156,63 @@
         ]) 
     !!}
 ```
+
+
+**eComp::table()**
+
+ - available & default options:
+```
+    [
+        'id'       => 'table-' . rand(100000000, 999999999),
+        'class'    => '',
+        'datas'    => [],
+        'columns'  => [],
+        'noScript' => false,
+        'ajax'     => false,
+    ];
+```
+
+- example: 
+
+```
+    {!! 
+        eForm::button([
+            'id'    => 'sendbutton',
+            'class' => 'form-control', 
+            'color' => 'primary', 
+            'label' => 'Send Form'
+        ]) 
+    !!}
+```
+
+
+
+**eTrait**
+
+- controller:
+```
+    use EmreBaskin\Eadmin\Traits\eTrait;
+
+    public function datatableApi(Request $request) {
+
+        return $this->datatableAjaxResponse($request,"App\Models\Category");
+
+    }
+        
+```
+
+- blade: 
+```
+    {!! eComp::table([
+        'columns' => [
+            'id'        => 'ID',
+            'name'      => 'Name',
+            'full_name' => 'Full Name'
+        ],
+        'ajax' => route('admin.categories.api.table')
+    ]) !!}
+```
+
+
+
+
