@@ -176,11 +176,17 @@
 
 ```
     {!! 
-        eForm::button([
-            'id'    => 'sendbutton',
-            'class' => 'form-control', 
-            'color' => 'primary', 
-            'label' => 'Send Form'
+        eComp::table([
+            'columns' => [
+                'id'        => 'ID',
+                'name'      => 'Name',
+                'full_name' => 'Full Name',
+            ],
+            'ajax' => route('admin.categories.api.table'),
+            'actionButtons' => [
+                'edit' => 'admin.category.update',
+                'delete' => 'admin.category.delete.action'
+            ]
         ]) 
     !!}
 ```
@@ -193,28 +199,7 @@
 ```
     use EmreBaskin\Eadmin\Helpers\eHelper;
 
-    public function datatableApi(Request $request) {
-
-        return eHelper::datatableAjaxResponse($request,"App\Models\Category");
-
-    }
-        
-```
-
-- blade: 
-```
-    {!! eComp::table([
-        'columns' => [
-            'id'        => 'ID',
-            'name'      => 'Name',
-            'full_name' => 'Full Name',
-        ],
-        'ajax' => route('admin.categories.api.table'),
-        'actionButtons' => [
-            'edit' => 'admin.category.update',
-            'delete' => 'admin.category.delete.action'
-        ]
-    ]) !!}
+    return eHelper::datatableAjaxResponse($request,"App\Models\Category");
 ```
 
 
