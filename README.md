@@ -187,15 +187,15 @@
 
 
 
-**eTrait**
+**eHelper**
 
 - controller:
 ```
-    use EmreBaskin\Eadmin\Traits\eTrait;
+    use EmreBaskin\Eadmin\Helpers\eHelper;
 
     public function datatableApi(Request $request) {
 
-        return $this->datatableAjaxResponse($request,"App\Models\Category");
+        return eHelper::datatableAjaxResponse($request,"App\Models\Category");
 
     }
         
@@ -207,9 +207,13 @@
         'columns' => [
             'id'        => 'ID',
             'name'      => 'Name',
-            'full_name' => 'Full Name'
+            'full_name' => 'Full Name',
         ],
-        'ajax' => route('admin.categories.api.table')
+        'ajax' => route('admin.categories.api.table'),
+        'actionButtons' => [
+            'edit' => 'admin.category.update',
+            'delete' => 'admin.category.delete.action'
+        ]
     ]) !!}
 ```
 

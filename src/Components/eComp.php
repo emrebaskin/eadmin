@@ -17,13 +17,13 @@ class eComp
     {
 
         $defaultValues = [
-            'id'       => 'table-' . rand(100000000, 999999999),
-            'class'    => '',
-            'datas'    => [],
-            'columns'  => [],
-            'noScript' => false,
-            'ajax'     => false,
-
+            'id'            => 'table-' . rand(100000000, 999999999),
+            'class'         => '',
+            'datas'         => [],
+            'columns'       => [],
+            'noScript'      => false,
+            'ajax'          => false,
+            'actionButtons' => [],
         ];
 
         $properties = array_merge($defaultValues, $properties);
