@@ -2,6 +2,7 @@
 
 namespace EmreBaskin\Eadmin\Components;
 
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
 
 
@@ -29,6 +30,30 @@ class eComp
         $properties = array_merge($defaultValues, $properties);
 
         return View::make('eComp::table', $properties)->render();
+
+    }
+
+    /**
+     * @return string|void
+     */
+    public static function showAlert()
+    {
+
+        if (Session::has('eAlert')) {
+
+            $alert = Session::get('eAlert');
+
+            if ( ! is_array($alert)) {
+
+                return;
+
+            }
+
+            return View::make('eComp::alert', $alert)->render();
+
+        }
+
+        return;
 
     }
 

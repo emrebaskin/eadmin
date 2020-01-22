@@ -2,8 +2,7 @@
     @if($label)<label for="{{ $id }}">{{ $label }}</label>@endif
     <select id="{{ $id }}" name="{{ $name }}" value="{{ $value }}" class="form-control select2 {{ $class }} @error($name) is-invalid @enderror"
            placeholder="{{ $placeholder ?? $label }}" {{ $disabled ? 'disabled' : '' }}>
-
-        <option label="{{ __('Choose one') }}"></option>
+        <option value="">&nbsp;</option>
         @foreach($datas as $value => $label)
             <option value="{{ $value }}" {{ $selected == $value ? ' selected' : (old($name) == $value ? ' selected' : '') }}>{{ $label }}</option>
         @endforeach

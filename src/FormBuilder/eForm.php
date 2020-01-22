@@ -94,11 +94,11 @@ class eForm
     {
 
         $defaultValues = [
-            'id'       => 'select-' . rand(100000000, 999999999),
-            'name'     => 'unnamed' . rand(100000000, 999999999),
-            'datas'    => [],
-            'selected' => null,
-            'noScript' => false,
+            'id'              => 'select-' . rand(100000000, 999999999),
+            'name'            => 'unnamed' . rand(100000000, 999999999),
+            'datas'           => [],
+            'selected'        => null,
+            'noScript'        => false,
         ];
 
         $defaultValues = array_merge(eForm::getSharedValues(), $defaultValues);
@@ -120,9 +120,10 @@ class eForm
         $defaultValues = [
             'id'       => 'button-' . rand(100000000, 999999999),
             'label'    => __('Button'),
-            'class'    => '',
+            'class'    => 'float-right',
             'color'    => 'dark',
             'disabled' => false,
+            'grid'     => 12,
         ];
 
         $properties = array_merge($defaultValues, $properties);

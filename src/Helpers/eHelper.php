@@ -3,6 +3,8 @@
 namespace EmreBaskin\Eadmin\Helpers;
 
 
+use Illuminate\Support\Facades\Session;
+
 class eHelper
 {
 
@@ -102,6 +104,27 @@ class eHelper
         ];
 
         return response()->json($datas);
+
+    }
+
+
+    /**
+     * @param $type
+     * @param null $message
+     *
+     * @return array
+     */
+    public static function createAlert($type, $message = null)
+    {
+
+        $alert = [
+            'eAlert' => [
+                'type'    => strtolower($type),
+                'message' => $message ?? __('Alert'),
+            ],
+        ];
+
+        return $alert;
 
     }
 
