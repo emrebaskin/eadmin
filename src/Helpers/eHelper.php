@@ -99,7 +99,7 @@ class eHelper
         $datas = [
             "draw"            => $request->input('draw'),
             "recordsTotal"    => $total,
-            "recordsFiltered" => $filtered,
+            "recordsFiltered" => is_int($filtered) ? $filtered : 0,
             "data"            => $data,
         ];
 

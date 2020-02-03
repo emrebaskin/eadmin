@@ -58,7 +58,7 @@
                                 @endif
 
                                 return buttons;
-                            } },
+                            }, className: 'text-right' },
                         @endif
                     ],
                 @endif
@@ -67,7 +67,7 @@
                     searchPlaceholder: '{{ __('Search..') }}',
                     sSearch: '',
                     lengthMenu: '_MENU_ {{ __('records') }}/{{ __('page') }}',
-                }
+                },
             });
         </script>
     @endif
