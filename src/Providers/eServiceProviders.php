@@ -44,6 +44,9 @@ class eServiceProviders extends ServiceProvider
      */
     public function boot()
     {
+
+        $this->publishes([  __DIR__.'/../Assets/Images' => public_path('eadmin/img')], 'Eadmin');
+        $this->loadRoutesFrom(__DIR__.'/../Routes/routes.php');
         $this->loadViewsFrom(__DIR__ . '/../views/' . env('EADMIN_THEME', 'dashforge') . '/form', 'eForm');
         $this->loadViewsFrom(__DIR__ . '/../views/' . env('EADMIN_THEME', 'dashforge') . '/components', 'eComp');
     }

@@ -5,6 +5,9 @@
 ];
 ```
 
+```
+php artisan vendor:publish --tag=Eadmin --force
+```
 
 #### Usage
 
