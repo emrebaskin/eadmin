@@ -10,51 +10,19 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-body">
-                <form>
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="custom-file m-3">
-                                <input type="file" class="custom-file-input" id="eFormImageUpload" name="eFormImageUpload">
-                                <label class="custom-file-label" for="customFile">{{ __('Choose file') }}</label>
-                            </div>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="custom-file m-3">
+                            <input type="file" class="custom-file-input" name="eFormImageUpload" id="eFormImageUpload">
+                            <label class="custom-file-label" for="customFile">{{ __('Choose file') }}</label>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">{{ __('Close') }}</button>
-                <button type="button" class="btn btn-dark" id="upload"
-                        onclick="uploadImage()">{{ __('Upload') }}</button>
+                <button type="submit" class="btn btn-dark" id="upload">{{ __('Upload') }}</button>
             </div>
         </div>
     </div>
 </div>
-
-<script>
-    function uploadImage() {
-
-        console.log($('#eFormImageUpload')[0].files[0]);
-        var formData = new FormData($('#eFormImageUpload')[0].files[0]);
-
-        $.ajax({
-            url: '{{ route('admin.image.upload') }}',
-            type: 'POST',
-            async: true,
-            data: formData,
-            cache: false,
-            contentType: false,
-            processData: false,
-            timeout: 60000,
-            success: function (data) {
-                console.log(data)
-            },
-            error: function (error) {
-                console.log(error)
-            },
-        });
-
-    }
-
-
-</script>
-

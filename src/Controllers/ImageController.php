@@ -2,6 +2,7 @@
 
 namespace EmreBaskin\Eadmin\Controllers;
 
+use EmreBaskin\Eadmin\Helpers\eHelper;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
@@ -15,21 +16,13 @@ class ImageController extends Controller
             'eFormImageUpload' => 'required|mimes:jpeg,jpg,png',
         ]);
 
-        if ($request->hasFile('eFormImageUpload')) {
+        $extension = '.' . $request->file('eFormImageUpload')->getClientOriginalExtension();
+        $filename  = eHelper::makeSlug(str_replace($extension, '', $request->file('eFormImageUpload')->getClientOriginalName()));
 
-            return response()->json(["error" => "No File"]);
+        $path = $request->file('eFormImageUpload')->storeAs('public/images', $filename.$extension);
+        $path = str_replace('public/images/','/storage/images/',$path);
 
-        }
-
-        if ($request->file('eFormImageUpload')->isValid()) {
-
-            return response()->json(["error" => "File is not valid"]);
-
-        }
-
-        $path = $request->photo->storeAs('images', 'filename.jpg');
-
-        return [ 'path' => $path ];
+        return ['path' => $path];
 
     }
 
