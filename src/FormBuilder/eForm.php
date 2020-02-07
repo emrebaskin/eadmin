@@ -132,7 +132,6 @@ class eForm
 
     }
 
-
     /**
      * @param array $properties
      *
@@ -142,8 +141,9 @@ class eForm
     {
 
         $defaultValues = [
-            'id'     => 'image-' . rand(100000000, 999999999),
+            'id'     => uniqid('image'),
             'class'  => '',
+            'name'   => uniqid('image'),
             'images' => [],
         ];
 
@@ -153,11 +153,11 @@ class eForm
 
         foreach ($properties['images'] as $image) {
 
-            $render .= View::make('eComp::images', ['image' => $image])->render();
+            $render .= View::make('eComp::images', ['id' => $image['id'], 'image' => $image['path'], 'name' => $properties['name']])->render();
 
         }
 
-        $render .= View::make('eComp::imageUpload')->render();
+        $render .= View::make('eComp::imageUpload', ['name' => $properties['name']])->render();
 
         return $render;
 
