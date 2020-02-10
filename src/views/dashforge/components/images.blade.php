@@ -1,4 +1,4 @@
-<figure id="{{ $name }}-{{ $id }}" class="pos-relative mg-b-0 wd-md-15p wd-sm-30p wd-xs-45p ht-100 bd bd-gray-400 rounded-5 mr-1 ml-1 mt-2 mb-4">
+<figure id="{{ $name }}-{{ $id }}" class="pos-relative mg-b-0 wd-md-15p wd-sm-30p wd-xs-45p ht-100 bd bd-gray-400 rounded-5 mr-1 ml-1 mt-0 mb-3">
     <input type="hidden" name="{{ $name }}[]" value="{{ $id }}">
     <img src="{{ $image }}" class="img-fit-cover rounded " alt="Responsive image">
     <figcaption class="pos-absolute t-0 r-0 pd-5 d-flex ">

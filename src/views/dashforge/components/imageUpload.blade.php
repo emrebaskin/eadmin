@@ -1,4 +1,4 @@
-<figure id="{{ $name }}" class="pos-relative mg-b-0 wd-md-15p wd-sm-30p wd-xs-45p ht-100 bd bd-gray-400 rounded-5 mr-1 ml-1 mt-2 mb-4" data-toggle="modal"
+<figure id="{{ $name }}" class="pos-relative mg-b-0 wd-md-15p wd-sm-30p wd-xs-45p ht-100 bd bd-gray-400 rounded-5 mr-1 ml-1 mt-0 mb-4" data-toggle="modal"
         data-target="#eFormUploadImageModal">
     <img src="/eadmin/img/upload-icon.png" class="img-fit-cover rounded" alt="Responsive image">
 </figure>
@@ -23,13 +23,6 @@
                         <div id="eFormImageUploadPreview" class="d-flex justify-content-center">
 
                         </div>
-{{--                        <div id="eFormImageUploadLoading" class="d-flex justify-content-center">--}}
-{{--                            <div class="spinner-border" role="status">--}}
-{{--                                <span class="sr-only">Loading...</span>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-
-
                         <div class="custom-file m-3">
                             <input data-field-name="{{ $name }}" type="file" class="custom-file-input" name="eFormImageUpload" id="eFormImageUpload">
                             <label class="custom-file-label" for="customFile">{{ __('Choose file') }}</label>
