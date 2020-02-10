@@ -94,11 +94,11 @@ class eForm
     {
 
         $defaultValues = [
-            'id'              => 'select-' . rand(100000000, 999999999),
-            'name'            => 'unnamed' . rand(100000000, 999999999),
-            'datas'           => [],
-            'selected'        => null,
-            'noScript'        => false,
+            'id'       => 'select-' . rand(100000000, 999999999),
+            'name'     => 'unnamed' . rand(100000000, 999999999),
+            'datas'    => [],
+            'selected' => null,
+            'noScript' => false,
         ];
 
         $defaultValues = array_merge(eForm::getSharedValues(), $defaultValues);
@@ -129,6 +129,40 @@ class eForm
         $properties = array_merge($defaultValues, $properties);
 
         return View::make('eForm::button', $properties)->render();
+
+    }
+
+    /**
+     * @param array $properties
+     *
+     * @return string
+     */
+    public static function imageUploads($properties = [])
+    {
+
+        $defaultValues = [
+            'id'     => uniqid('image'),
+            'class'  => '',
+            'name'   => uniqid('image'),
+            'label'  => __('Images'),
+            'images' => [],
+        ];
+
+        $properties = array_merge($defaultValues, $properties);
+
+        $render = '';
+        $render .= View::make('eForm::label', ['text' => $properties['label']])->render();
+
+        foreach ($properties['images'] as $image) {
+
+            $image = (array)$image;
+            $render .= View::make('eComp::images', ['id' => $image['id'], 'image' => $image['path'], 'name' => $properties['name']])->render();
+
+        }
+
+        $render .= View::make('eComp::imageUpload', ['name' => $properties['name']])->render();
+
+        return $render;
 
     }
 

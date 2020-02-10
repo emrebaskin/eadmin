@@ -99,7 +99,7 @@ class eHelper
         $datas = [
             "draw"            => $request->input('draw'),
             "recordsTotal"    => $total,
-            "recordsFiltered" => $filtered,
+            "recordsFiltered" => is_int($filtered) ? $filtered : 0,
             "data"            => $data,
         ];
 
@@ -126,6 +126,39 @@ class eHelper
 
         return $alert;
 
+    }
+
+
+    /**
+     * @param $text
+     *
+     * @return bool|false|string|string[]|null
+     */
+    public static function makeSlug($text)
+    {
+        // replace non letter or digits by -
+        $text = preg_replace('~[^\pL\d]+~u', '-', $text);
+
+        // transliterate
+        $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+
+        // remove unwanted characters
+        $text = preg_replace('~[^-\w]+~', '', $text);
+
+        // trim
+        $text = trim($text, '-');
+
+        // remove duplicate -
+        $text = preg_replace('~-+~', '-', $text);
+
+        // lowercase
+        $text = strtolower($text);
+
+        if (empty($text)) {
+            return 'n-a';
+        }
+
+        return $text;
     }
 
 }

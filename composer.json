@@ -17,5 +17,12 @@
         "psr-4": {
             "EmreBaskin\\Eadmin\\": "src/"
         }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "EmreBaskin\\Eadmin\\Providers\\eServiceProviders"
+            ]
+        }
     }
 }
