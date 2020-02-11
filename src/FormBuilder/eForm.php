@@ -38,8 +38,8 @@ class eForm
     {
 
         $defaultValues = [
-            'id'   => 'input-' . rand(100000000, 999999999),
-            'name' => 'unnamed' . rand(100000000, 999999999),
+            'id'   => 'input-' . uniqid(),
+            'name' => 'unnamed' . uniqid(),
             'type' => 'text',
         ];
 
@@ -73,8 +73,8 @@ class eForm
     {
 
         $defaultValues = [
-            'id'   => 'textarea-' . rand(100000000, 999999999),
-            'name' => 'unnamed' . rand(100000000, 999999999),
+            'id'   => 'textarea-' . uniqid(),
+            'name' => 'unnamed' . uniqid(),
             'rows' => 3,
         ];
 
@@ -94,8 +94,8 @@ class eForm
     {
 
         $defaultValues = [
-            'id'       => 'select-' . rand(100000000, 999999999),
-            'name'     => 'unnamed' . rand(100000000, 999999999),
+            'id'       => 'select-' . uniqid(),
+            'name'     => 'unnamed' . uniqid(),
             'datas'    => [],
             'selected' => null,
             'noScript' => false,
@@ -118,7 +118,7 @@ class eForm
     {
 
         $defaultValues = [
-            'id'       => 'button-' . rand(100000000, 999999999),
+            'id'       => 'button-' . uniqid(),
             'label'    => __('Button'),
             'class'    => 'float-right',
             'color'    => 'dark',
@@ -155,14 +155,57 @@ class eForm
 
         foreach ($properties['images'] as $image) {
 
-            $image = (array)$image;
-            $render .= View::make('eComp::images', ['id' => $image['id'], 'image' => $image['path'], 'name' => $properties['name']])->render();
+            $image  = (array)$image;
+            $render .= View::make('eComp::images',
+                ['id' => $image['id'], 'image' => $image['path'], 'name' => $properties['name']])->render();
 
         }
 
         $render .= View::make('eComp::imageUpload', ['name' => $properties['name']])->render();
 
         return $render;
+
+    }
+
+
+    /**
+     * @param array $properties
+     *
+     * @return string
+     */
+    public static function label($properties = [])
+    {
+
+        $defaultValues = [
+            'text' => __('Label'),
+        ];
+
+        $properties = array_merge($defaultValues, $properties);
+
+        return View::make('eForm::label', $properties)->render();
+
+    }
+
+    /**
+     * @param array $properties
+     *
+     * @return string
+     */
+    public static function checkbox($properties = [])
+    {
+
+        $defaultValues = [
+            'id'      => uniqid('checkbox'),
+            'label'   => __('Label'),
+            'name'    => uniqid('checkbox'),
+            'class'   => '',
+            'value'   => '',
+            'checked' => false,
+        ];
+
+        $properties = array_merge($defaultValues, $properties);
+
+        return View::make('eForm::checkbox', $properties)->render();
 
     }
 

@@ -1,7 +1,6 @@
-var Upload = function (file) {
+var Upload = function (file,name) {
     this.file = file;
-
-    console.log(file)
+    this.name = name;
     this.progress_bar_id = "#eFormImageUploadProcessBar";
     this.preview_id = "#eFormImageUploadPreview";
 };
@@ -15,11 +14,6 @@ Upload.prototype.getSize = function() {
 Upload.prototype.getName = function() {
     return this.file.name;
 };
-Upload.prototype.getName = function() {
-    return $(this).data('field-name');
-};
-
-
 Upload.prototype.doUpload = function () {
 
     var that = this;
@@ -27,6 +21,7 @@ Upload.prototype.doUpload = function () {
 
     // add assoc key values, this will be posts values
     formData.append("eFormImageUpload", this.file, this.getName());
+    formData.append("eFormFieldName", this.name);
 
     $.ajax({
         type: "POST",
@@ -45,10 +40,9 @@ Upload.prototype.doUpload = function () {
         success: function (data) {
             $(that.progress_bar_id + " .progress-bar").removeClass("progress-bar-animated");
             $(that.progress_bar_id).hide();
-            $(that.preview_id).html(data.viewImage);
+            $('#'+that.name).before(data.viewImage);
         },
         error: function (error) {
-            console.log("error",error);
             $(that.progress_bar_id + " .progress-bar").removeClass("progress-bar-animated");
             $(that.progress_bar_id).hide();
         },
@@ -77,10 +71,30 @@ $("#eFormImageUpload").on("change", function (e) {
 
 
     var file = $(this)[0].files[0];
-    var upload = new Upload(file);
+    var name = $(this).data('field-name');
+    var upload = new Upload(file,name);
 
     // maby check size or type here with upload.getSize() and upload.getType()
 
     // execute upload
     upload.doUpload();
 });
+
+
+function deleteImage(id,figureId) {
+    $.ajax({
+        type: "POST",
+        url: "/admin/image/delete/"+id,
+        success: function (data) {
+            $('#'+figureId).remove();
+        },
+        error: function (error) {
+            console.log('error',error)
+        },
+        async: true,
+        cache: false,
+        contentType: false,
+        processData: false,
+        timeout: 60000
+    });
+}
